@@ -11,24 +11,25 @@ const Projects: React.FC = () => {
     : PROJECTS_LIST.filter(p => p.category === filter);
 
   return (
-    <div className="bg-slate-50 min-h-screen py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-6xl font-black text-slate-900 mb-6">300+ Solved Projects</h1>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-            Explore our massive library of ready-to-use professional projects across multiple tech domains.
+    <div className="bg-black min-h-screen pt-40 pb-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <header className="text-center mb-24">
+          <span className="gradient-text font-black text-sm uppercase tracking-[0.4em] mb-6 block">The Project Vault</span>
+          <h1 className="text-6xl md:text-8xl font-extrabold text-white tracking-tighter mb-10 italic">BUILD ANYTHING.</h1>
+          <p className="text-xl md:text-2xl text-apple-gray max-w-2xl mx-auto font-medium">
+            300+ professional industrial solutions across every technical domain.
           </p>
-        </div>
+        </header>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
+        <div className="flex flex-wrap justify-center gap-4 mb-20">
           {categories.map(c => (
             <button
               key={c}
               onClick={() => setFilter(c)}
-              className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${
+              className={`px-8 py-3 rounded-full text-[12px] font-bold transition-all border ${
                 filter === c 
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' 
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                  ? 'bg-white text-black border-white' 
+                  : 'bg-white/5 text-apple-gray border-white/10 hover:border-white/40'
               }`}
             >
               {c}
@@ -38,29 +39,33 @@ const Projects: React.FC = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filtered.map(p => (
-            <div key={p.id} className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all group">
-              <div className="h-56 relative overflow-hidden">
-                <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black text-blue-600 uppercase tracking-widest shadow-sm">
-                  {p.category}
-                </div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors">{p.title}</h3>
-                <p className="text-slate-500 text-sm mb-6 leading-relaxed">{p.description}</p>
-                <button className="flex items-center text-sm font-black text-blue-600 group-hover:translate-x-2 transition-transform">
-                  View Source Code <i className="fa-solid fa-arrow-right ml-2"></i>
-                </button>
-              </div>
+            <div key={p.id} className="glass-card group h-[450px] overflow-hidden relative flex flex-col justify-end p-10">
+               <img 
+                 src={p.image} 
+                 alt={p.title} 
+                 className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-1000 group-hover:scale-110" 
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+               
+               <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-2">
+                 <span className="px-3 py-1 rounded-lg bg-indigo-600 text-[10px] font-bold text-white uppercase tracking-widest mb-4 inline-block">
+                   {p.category}
+                 </span>
+                 <h3 className="text-3xl font-extrabold text-white mb-3 tracking-tight leading-tight">{p.title}</h3>
+                 <p className="text-apple-gray text-sm mb-6 leading-relaxed font-medium line-clamp-2">
+                   {p.description}
+                 </p>
+                 <button className="text-white font-bold text-sm flex items-center group-hover:underline underline-offset-8 decoration-2">
+                   View Project Details <i className="fa-solid fa-chevron-right text-[10px] ml-2"></i>
+                 </button>
+               </div>
             </div>
           ))}
         </div>
         
-        {/* Placeholder for "Load More" */}
-        <div className="mt-20 text-center">
-           <p className="text-slate-400 font-bold mb-6">Showing 6 of 300+ projects</p>
-           <button className="px-12 py-4 bg-slate-900 text-white font-black rounded-2xl hover:bg-slate-800 transition-all shadow-xl">
-             Load More Projects
+        <div className="mt-32 text-center border-t border-white/10 pt-20">
+           <button className="apple-btn px-16 py-5 text-xl tracking-tight">
+             Explore 250+ More
            </button>
         </div>
       </div>

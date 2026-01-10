@@ -6,72 +6,68 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (
-    <div className="bg-brand-dark">
+    <div className="bg-black space-y-4 px-4 pb-20">
       <Hero />
       
-      {/* Featured Programs */}
-      <section className="py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6 italic uppercase">Specializations<span className="text-indigo-500 not-italic">.</span></h2>
-            <div className="h-1.5 w-24 bg-gradient-to-r from-indigo-500 to-rose-500 mx-auto rounded-full"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {[
-              { 
-                title: 'Machine Learning & AI', 
-                path: '/internship/ml', 
-                icon: 'fa-brain', 
-                tag: 'MOST POPULAR',
-                desc: 'Master deep learning, NLP, and model deployment at scale.',
-                accent: 'from-indigo-600 to-indigo-800'
-              },
-              { 
-                title: 'Data Science Elite', 
-                path: '/internship/ds', 
-                icon: 'fa-chart-pie', 
-                tag: 'HIGHEST RATING',
-                desc: 'Strategic data analysis and business intelligence for decision makers.',
-                accent: 'from-rose-600 to-rose-800'
-              }
-            ].map((tech, i) => (
-              <Link key={i} to={tech.path} className="group relative glass p-12 rounded-[3rem] overflow-hidden transition-all hover:scale-[1.02]">
-                <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${tech.accent} opacity-[0.03] group-hover:opacity-[0.1] transition-opacity blur-3xl`}></div>
-                
-                <div className="relative z-10">
-                  <span className="text-[10px] font-black tracking-widest text-indigo-400 mb-6 block uppercase">{tech.tag}</span>
-                  <div className="w-20 h-20 bg-white/5 rounded-[2rem] flex items-center justify-center mb-8 border border-white/10 group-hover:border-white/20 transition-all">
-                    <i className={`fa-solid ${tech.icon} text-3xl text-white`}></i>
-                  </div>
-                  <h3 className="text-4xl font-black text-white mb-4 tracking-tight">{tech.title}</h3>
-                  <p className="text-slate-400 font-medium mb-10 leading-relaxed max-w-sm">{tech.desc}</p>
-                  
-                  <div className="flex items-center space-x-3 text-white font-black text-xs uppercase tracking-widest">
-                    <span>View Curriculum</span>
-                    <i className="fa-solid fa-chevron-right text-indigo-500 group-hover:translate-x-2 transition-transform"></i>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
+      {/* Product Billboards */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { 
+            id: 'ml', 
+            name: 'Machine Learning', 
+            subtitle: 'The Core of Intelligence',
+            desc: 'Neural Networks, NLP & Transformers.',
+            img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200',
+            grad: 'from-blue-600/20'
+          },
+          { 
+            id: 'ds', 
+            name: 'Data Science', 
+            subtitle: 'Insights at Scale',
+            desc: 'Big Data, Analytics & Visualization.',
+            img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200',
+            grad: 'from-purple-600/20'
+          }
+        ].map((track) => (
+          <Link key={track.id} to={`/internship/${track.id}`} className="glass-card group h-[700px] overflow-hidden relative flex flex-col items-center text-center pt-24 px-10">
+            <div className="relative z-10 transition-transform duration-700 group-hover:-translate-y-2">
+              <h3 className="text-5xl font-extrabold text-white mb-3 tracking-tighter">{track.name}</h3>
+              <p className="text-xl text-apple-gray mb-8 font-medium">{track.subtitle}</p>
+              <div className="flex space-x-6 justify-center">
+                <span className="text-apple-blue font-bold text-lg hover:underline decoration-2 underline-offset-4">Learn more &gt;</span>
+                <span className="text-apple-blue font-bold text-lg hover:underline decoration-2 underline-offset-4">Join &gt;</span>
+              </div>
+            </div>
+            <div className="absolute inset-0 z-0">
+              <img 
+                src={track.img} 
+                className="w-full h-full object-cover opacity-60 transition-transform duration-1000 group-hover:scale-110" 
+                alt={track.name} 
+              />
+              <div className={`absolute inset-0 bg-gradient-to-t ${track.grad} to-transparent`}></div>
+            </div>
+          </Link>
+        ))}
       </section>
 
       <FeatureGrid />
 
-      {/* Modern CTA */}
-      <section className="py-40 px-6">
-        <div className="max-w-6xl mx-auto glass rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
-          <h2 className="text-5xl md:text-7xl font-black text-white mb-10 tracking-tighter leading-[0.9]">
-            Ready to <span className="italic underline decoration-indigo-500">Scale</span> Your Career?
-          </h2>
-          <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-medium">
-            Join the elite circle of 79,000+ students who transformed their technical trajectory with us.
+      {/* Immersive CTA Section */}
+      <section className="glass-card h-[600px] overflow-hidden relative flex flex-col items-center justify-center text-center px-6">
+        <img 
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
+          className="absolute inset-0 w-full h-full object-cover opacity-20" 
+          alt="CTA Background" 
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-transparent to-pink-900/40"></div>
+        
+        <div className="relative z-10">
+          <h2 className="text-5xl md:text-7xl font-extrabold text-white mb-10 tracking-tighter">Start your <br /> <span className="gradient-text">mastery journey.</span></h2>
+          <p className="text-xl md:text-2xl text-apple-gray mb-14 font-medium max-w-2xl mx-auto leading-relaxed">
+            300+ professional industrial projects are waiting for your touch. Built by engineers, for engineers.
           </p>
-          <button className="px-14 py-6 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-3xl text-lg tracking-widest uppercase shadow-2xl shadow-indigo-500/30 transition-all hover:scale-105">
-            APPLY FOR COHORT
+          <button className="apple-btn px-16 py-5 text-xl tracking-tight">
+            Apply Now
           </button>
         </div>
       </section>
