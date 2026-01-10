@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Hero from '../components/Hero';
 import FeatureGrid from '../components/FeatureGrid';
@@ -6,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   return (
-    <div className="bg-black space-y-4 px-4 pb-20">
+    <div className="bg-black space-y-4 px-4 pb-20 md:pb-32">
       <Hero />
       
       {/* Product Billboards */}
@@ -29,13 +28,25 @@ const Home: React.FC = () => {
             grad: 'from-purple-600/20'
           }
         ].map((track) => (
-          <Link key={track.id} to={`/internship/${track.id}`} className="glass-card group h-[700px] overflow-hidden relative flex flex-col items-center text-center pt-24 px-10">
+          <Link 
+            key={track.id} 
+            to={`/internship/${track.id}`} 
+            className="glass-card group h-[500px] md:h-[700px] overflow-hidden relative flex flex-col items-center text-center pt-16 md:pt-24 px-6 md:px-10"
+          >
             <div className="relative z-10 transition-transform duration-700 group-hover:-translate-y-2">
-              <h3 className="text-5xl font-extrabold text-white mb-3 tracking-tighter">{track.name}</h3>
-              <p className="text-xl text-apple-gray mb-8 font-medium">{track.subtitle}</p>
-              <div className="flex space-x-6 justify-center">
-                <span className="text-apple-blue font-bold text-lg hover:underline decoration-2 underline-offset-4">Learn more &gt;</span>
-                <span className="text-apple-blue font-bold text-lg hover:underline decoration-2 underline-offset-4">Join &gt;</span>
+              <h3 className="text-3xl md:text-5xl font-extrabold text-white mb-2 md:mb-3 tracking-tighter">
+                {track.name}
+              </h3>
+              <p className="text-base md:text-xl text-apple-gray mb-6 md:mb-8 font-medium">
+                {track.subtitle}
+              </p>
+              <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-6 justify-center">
+                <span className="text-apple-blue font-bold text-base md:text-lg hover:underline decoration-2 underline-offset-4">
+                  Learn more &gt;
+                </span>
+                <span className="text-apple-blue font-bold text-base md:text-lg hover:underline decoration-2 underline-offset-4">
+                  Join &gt;
+                </span>
               </div>
             </div>
             <div className="absolute inset-0 z-0">
@@ -53,7 +64,7 @@ const Home: React.FC = () => {
       <FeatureGrid />
 
       {/* Immersive CTA Section */}
-      <section className="glass-card h-[600px] overflow-hidden relative flex flex-col items-center justify-center text-center px-6">
+      <section className="glass-card h-[500px] md:h-[600px] overflow-hidden relative flex flex-col items-center justify-center text-center px-6">
         <img 
           src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
           className="absolute inset-0 w-full h-full object-cover opacity-20" 
@@ -61,12 +72,14 @@ const Home: React.FC = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-transparent to-pink-900/40"></div>
         
-        <div className="relative z-10">
-          <h2 className="text-5xl md:text-7xl font-extrabold text-white mb-10 tracking-tighter">Start your <br /> <span className="gradient-text">mastery journey.</span></h2>
-          <p className="text-xl md:text-2xl text-apple-gray mb-14 font-medium max-w-2xl mx-auto leading-relaxed">
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 md:mb-10 tracking-tighter leading-tight">
+            Start your <br /> <span className="gradient-text">mastery journey.</span>
+          </h2>
+          <p className="text-base md:text-xl lg:text-2xl text-apple-gray mb-10 md:mb-14 font-medium max-w-2xl mx-auto leading-relaxed">
             300+ professional industrial projects are waiting for your touch. Built by engineers, for engineers.
           </p>
-          <button className="apple-btn px-16 py-5 text-xl tracking-tight">
+          <button className="apple-btn px-10 md:px-16 py-4 md:py-5 text-lg md:text-xl tracking-tight w-full sm:w-auto">
             Apply Now
           </button>
         </div>
